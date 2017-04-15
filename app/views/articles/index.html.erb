@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm-7">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>
+          <u>Recent Articles</u>
+        </h1>
+      </div>
+      <div class="col-sm-4 text-right">
+        <% if can? :create, Article %>
+          <%= link_to new_article_path, class: 'btn btn-primary' do %>
+            <span class="fa fa-plus fa-lg"></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <% @articles.each do |article| %>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-block">
+              <h3 class="card-title"><%= article.headline %></h3>
+
+              <p class="card-text">
+              <div style="width: 200px; height: 200px; float: left; margin: 5px 5px 5px 5px">
+                this is floating text
+              </div>
+              <%= article.description %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+  <div class="col-sm-5">
+    <%= render partial: 'articles/reciprocate_life_about_mini' %>
+
+    <br/>
+
+    <%= render partial: 'articles/leading_topic_requests' %>
+  </div>
+</div>

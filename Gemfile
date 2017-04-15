@@ -13,6 +13,11 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
+#todo
+gem 'responders'
+gem 'cancancan'
+gem 'kaminari'
+gem 'simple_form'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
