@@ -5,6 +5,7 @@ class CreateArticles < ActiveRecord::Migration[5.0]
       t.text :description
       t.text :body
       t.belongs_to :user, foreign_key: true
+      t.timestamps
     end
   end
 end

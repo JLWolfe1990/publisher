@@ -10,17 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415193540) do
+ActiveRecord::Schema.define(version: 20170422141621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
-    t.string  "headline"
-    t.text    "description"
-    t.text    "body"
-    t.integer "user_id"
+    t.string   "headline"
+    t.text     "description"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["user_id"], name: "index_articles_on_user_id", using: :btree
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.integer  "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "query"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_searches_on_user_id", using: :btree
+  end
+
+  create_table "topic_requests", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "requester_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["requester_id"], name: "index_topic_requests_on_requester_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,4 +90,6 @@ ActiveRecord::Schema.define(version: 20170415193540) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "searches", "users"
+  add_foreign_key "topic_requests", "users", column: "requester_id"
 end

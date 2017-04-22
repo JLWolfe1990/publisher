@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="article-image">
+      <%= image_tag @article.image.url(:medium) %>
+    </div>
+
+    <div class="article-headline">
+      <h1>
+        <%= @article.headline %>
+      </h1>
+    </div>
+
+    <div class="article-body">
+      <%= @article.body %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<%= simple_form_for @topic_request do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.association :requester, value: current_user.try(:id), as: :hidden %>
+  <%= f.submit %>
+<% end %>

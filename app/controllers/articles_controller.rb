@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   respond_to :html
 
   def index
-    respond_with(@articles)
+    @topic_requests = TopicRequest.order(created_at: :asc)
   end
 
   def new
@@ -26,6 +26,6 @@ class ArticlesController < ApplicationController
   private
 
   def create_params
-    params.require(:article).permit(:body, :description, :headline)
+    params.require(:article).permit(:body, :description, :headline, :image)
   end
 end

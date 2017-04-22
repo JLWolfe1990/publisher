@@ -1,0 +1,22 @@
+<% @search_results.each do |klass, documents| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>
+        <%= klass.to_s.underscore.humanize.titlecase %>
+      </h2>
+    </div>
+  </div>
+
+  <% documents.each do |document| %>
+    <% object = document.searchable %>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <%= link_to (object.try(:title) || object.try(:headline)), polymorphic_path(object) %>
+      </div>
+      <div class="col-sm-6">
+        <%= object.description %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

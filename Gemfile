@@ -13,11 +13,12 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
-#todo
 gem 'responders'
 gem 'cancancan'
 gem 'kaminari'
 gem 'simple_form'
+gem 'pg_search'
+gem 'dotenv'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
@@ -36,6 +37,9 @@ gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'devise'
 gem 'devise_invitable'
 gem 'pg'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'underscore-rails'
 group :development do
   gem 'better_errors'
   gem 'foreman'

@@ -17,10 +17,14 @@
         <ul class="navbar-nav mr-auto">
           <%= render 'layouts/navigation_links' %>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <%= simple_form_for Search.new, class: 'form-inline my-2 my-lg-0', html: {style: 'height: 38px'} do |f| %>
+          <%= f.input :query, label: false, placeholder: 'Search', class: 'form-control mr-sm-2' %>
+          <%= f.input :user_id, value: current_user.try(:id), as: :hidden, label: false %>
+        <% end %>
+        <!--<form class="form-inline my-2 my-lg-0">-->
+          <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
+          <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
         <ul class="navbar-nav">
           <%= render 'layouts/nav_links_for_auth' %>
         </ul>

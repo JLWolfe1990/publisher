@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require tether
 //= require bootstrap
+//= require underscore
 //= require_tree .
