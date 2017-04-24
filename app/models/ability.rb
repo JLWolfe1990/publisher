@@ -3,8 +3,9 @@ class Ability
 
   def initialize(user)
     can :read, Article
-    can [:read, :create], TopicRequest
+    can [:read, :create, :upvote, :downvote], TopicRequest
     can [:show, :create], Search
+    can :subscribe, User
 
     return unless user
     give_contributor_permissions if user.contributor? || user.admin?

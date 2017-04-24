@@ -1,0 +1,17 @@
+<% unless current_user || cookies[:user_email].present? %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="alert alert-danger">
+        <div class="alert-text">
+          Whoa! It looks like you have not joined our online community, yet!
+        </div>
+        <div class="alert-form">
+          <%= simple_form_for User.new, url: subscribe_users_path, html: {class: 'form-inline'} do |f| %>
+            <%= f.input :email, label: false, placeholder: 'Subscribe', class: 'form-control' %>
+            <%= f.submit 'Subscribe', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

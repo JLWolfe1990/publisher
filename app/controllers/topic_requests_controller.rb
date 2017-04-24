@@ -19,6 +19,14 @@ class TopicRequestsController < ApplicationController
     respond_with(@topic_request)
   end
 
+  def upvote
+    @topic_request.upvote(current_user)
+  end
+
+  def downvote
+    @topic_request.downvote(current_user)
+  end
+
   private
 
   def create_params
