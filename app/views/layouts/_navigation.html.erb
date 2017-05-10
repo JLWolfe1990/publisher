@@ -1,5 +1,13 @@
 <%# navigation styled for Bootstrap 4.0 %>
 <div class="container">
+  <div class="search-box">
+    <%= simple_form_for Search.new, class: 'form-inline my-2 my-lg-0', html: {style: 'height: 38px'} do |f| %>
+      <%= f.input :query, label: false, placeholder: 'Search', class: 'form-control mr-sm-2' %>
+      <%= f.input :user_id, value: current_user.try(:id), as: :hidden, label: false %>
+    <% end %>
+  </div>
+  <div style="clear: both"></div>
+
   <div class="header clearfix">
     <nav class="navbar navbar-toggleable-md navbar-light bg-primary">
       <button class="navbar-toggler navbar-toggler-right"
@@ -17,10 +25,6 @@
         <ul class="navbar-nav mr-auto">
           <%= render 'layouts/navigation_links' %>
         </ul>
-        <%= simple_form_for Search.new, class: 'form-inline my-2 my-lg-0', html: {style: 'height: 38px'} do |f| %>
-          <%= f.input :query, label: false, placeholder: 'Search', class: 'form-control mr-sm-2' %>
-          <%= f.input :user_id, value: current_user.try(:id), as: :hidden, label: false %>
-        <% end %>
         <ul class="navbar-nav">
           <%= render 'layouts/nav_links_for_auth' %>
         </ul>
