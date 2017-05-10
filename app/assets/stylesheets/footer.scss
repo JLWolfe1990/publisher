@@ -31,3 +31,14 @@ body {
 code {
   font-size: 80%;
 }
+
+footer {
+  .left-side {
+    display: inline-block;
+  }
+
+  .right-side {
+    display: inline-block;
+    float: right;
+  }
+}
