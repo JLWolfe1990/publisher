@@ -4,7 +4,7 @@
   </div>
   <div class="col-sm-2 text-right">
     <% if can? :create, TopicRequest %>
-      <%= link_to new_topic_request_path, class: 'btn btn-primary' do %>
+      <%= link_to new_topic_request_path, class: 'btn btn-primary js-new-topic-request' do %>
         <span class="fa fa-plus fa-lg"></span>
       <% end %>
     <% end %>

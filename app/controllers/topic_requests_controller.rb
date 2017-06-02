@@ -9,7 +9,9 @@ class TopicRequestsController < ApplicationController
 
   def create
     respond_with(@topic_request) do |format|
-      unless @topic_request.save
+      if @topic_request.save
+        format.html { redirect_to root_path }
+      else
         format.html { render :new }
       end
     end

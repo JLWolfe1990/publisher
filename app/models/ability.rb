@@ -3,11 +3,13 @@ class Ability
 
   def initialize(user)
     can :read, Article
-    can [:read, :create, :upvote, :downvote], TopicRequest
+    can :read, TopicRequest
     can [:show, :create], Search
     can :subscribe, User
 
     return unless user
+
+    can [:create, :upvote, :downvote], TopicRequest
     give_contributor_permissions if user.contributor? || user.admin?
     # Define abilities for the passed in user here. For example:
     #

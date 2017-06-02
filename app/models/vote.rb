@@ -5,6 +5,7 @@ class Vote < ActiveRecord::Base
   belongs_to :voteable, polymorphic: true
 
   validates :category, :user, :voteable, presence: true
+  validates :voteable_id, uniqueness: { scope: :user_id }
 
   scope :up_votes, -> { where(category: :up) }
   scope :down_votes, -> { where(category: :down) }

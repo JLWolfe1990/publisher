@@ -3,8 +3,7 @@ $(document).ready(function() {
     var path = $(this).attr('path');
 
     $.post(path, { article: {} }, function() {
-      debugger
-      true
+      location.reload();
     })
   }
 
