@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user fa-lg"></span></a>
+    <a class="nav-link dropdown-toggle js-user-dropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user fa-lg"></span></a>
     <div class="dropdown-menu">
       <%= link_to 'Edit account', edit_user_registration_path, class: 'dropdown-item' %>
       <div class="dropdown-divider"></div>
