@@ -31,5 +31,35 @@ feature 'Creation', type: :feature, js: true do
 
       expect(page).to have_current_path(root_path)
     end
+
+    it 'should not be able to create an article' do
+      visit root_path
+
+      expect(page).to_not have_css('.js-new-article')
+    end
+
+    context 'and the user is a contributor' do
+      let :user do
+        FactoryGirl.create :user, :contributor, password: 'fakepass', password_confirmation: 'fakepass'
+      end
+
+      it 'should be able to create an article' do
+        visit root_path
+
+        expect(page).to have_css('.js-new-article')
+      end
+    end
+
+    context 'and the user is an admin' do
+      let :user do
+        FactoryGirl.create :user, :admin, password: 'fakepass', password_confirmation: 'fakepass'
+      end
+
+      it 'should be able to create an article' do
+        visit root_path
+
+        expect(page).to have_css('.js-new-article')
+      end
+    end
   end
 end
