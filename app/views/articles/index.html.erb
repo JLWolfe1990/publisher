@@ -17,7 +17,7 @@
     <% @articles.each do |article| %>
       <div class="row">
         <div class="col-sm-12">
-          <div class="card">
+          <div class="card article-card">
             <div class="card-block article-block" id="<%= article.id %>" show-path="<%= article_path(article) %>">
               <h3 class="card-title"><%= article.headline %></h3>
 
@@ -31,6 +31,20 @@
           </div>
         </div>
       </div>
+
+      <% if article == @articles.last %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-block article-block" show-path="<%= articles_path %>">
+                <p class="card-text card-text-final">
+                  View More Articles
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
 
   </div>

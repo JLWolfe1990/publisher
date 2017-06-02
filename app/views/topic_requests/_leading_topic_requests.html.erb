@@ -19,7 +19,7 @@
       <div class="card topic-request-block-container">
         <!-- TODO: on hover this should change background color -->
         <!-- TODO: this should be clickable to go to the full topic request page -->
-        <div class="card-block topic-request-block">
+        <div class="card-block topic-request-block" path="<%= topic_request_path(topic_request) %>">
           <div style="float: left">
             <!-- TODO: on hover this should show the desctiption -->
             <h6><%= topic_request.title %></h6>
@@ -41,7 +41,7 @@
 
       <% if topic_request == @topic_requests.last %>
         <div class="card topic-request-block-container">
-          <div class="card-block topic-request-block topic-request-block-final">
+          <div class="card-block topic-request-block topic-request-block-final" path="<%= topic_requests_path %>">
             View More Topic Requests
           </div>
         </div>
