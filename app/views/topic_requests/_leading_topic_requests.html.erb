@@ -16,7 +16,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <div class="card">
+      <div class="card topic-request-block-container">
         <!-- TODO: on hover this should change background color -->
         <!-- TODO: this should be clickable to go to the full topic request page -->
         <div class="card-block topic-request-block">
@@ -38,6 +38,14 @@
           </div>
         </div>
       </div>
+
+      <% if topic_request == @topic_requests.last %>
+        <div class="card topic-request-block-container">
+          <div class="card-block topic-request-block topic-request-block-final">
+            View More Topic Requests
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

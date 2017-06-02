@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   respond_to :html
 
   def index
-    @topic_requests = TopicRequest.order(created_at: :asc)
+    @topic_requests = TopicRequest.order(created_at: :asc).limit(5)
   end
 
   def new
