@@ -13,8 +13,11 @@
  */
 
 
+@import "bootstrap_overrides";
+@import 'bootstrap/bootstrap';
 @import '1st_load_framework';
 @import 'font-awesome';
+@import "bootstrap_overrides";
 @import 'navbar';
 @import 'footer';
 @import 'articles';

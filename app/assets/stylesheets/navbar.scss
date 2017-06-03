@@ -10,7 +10,11 @@
 }
 
 .navbar {
-  background: linear-gradient(#487499, #7CB1DA);
+  background: $theme-blue;
   border-radius: 3pt;
-  color: white;
+  font-size: 16pt;
+
+  .nav-link {
+    color: $theme-grey;
+  }
 }

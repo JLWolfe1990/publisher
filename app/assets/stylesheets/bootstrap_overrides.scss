@@ -1,0 +1,26 @@
+$theme-white: white;
+$theme-orange: rgb(231, 76, 60);
+$theme-grey: rgb(236, 240, 241);
+$theme-blue: rgb(52, 152, 219);
+$theme-darker-blue: rgb(41, 128, 185);
+$theme-dark-blue: rgb(44, 62, 80);
+
+$enable-shadows: true;
+
+$btn-primary-bg: $theme-dark-blue;
+
+//$navbar-light-color:                rgba($black,.5) !default;
+//$navbar-light-hover-color:          rgba($black,.7) !default;
+//$navbar-light-active-color:         rgba($black,.9) !default;
+//$navbar-light-disabled-color:       rgba($black,.3) !default;
+//$navbar-light-toggler-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"), "#", "%23") !default;
+//$navbar-light-toggler-border:       rgba($black,.1) !default;
+
+$navbar-light-color:                rgba($theme-white,.7);
+$navbar-light-hover-color:          rgba($theme-white,1);
+$navbar-light-active-color:         $theme-orange;
+$navbar-light-disabled-color:       rgba($theme-white,.3);
+$navbar-light-toggler-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"), "#", "%23");
+$navbar-light-toggler-border:       rgba($theme-white,.1);
+
+$headings-color: $theme-dark-blue;

@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require tether
-//= require bootstrap
+//= require bootstrap.min
 //= require underscore
 //= require_tree .
