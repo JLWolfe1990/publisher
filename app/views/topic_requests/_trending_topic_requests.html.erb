@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-sm-10">
+    <h2>Leading Topic Requests</h2>
+  </div>
+  <div class="col-sm-2 text-right">
+    <% if can? :create, TopicRequest %>
+      <%= link_to new_topic_request_path, class: 'btn btn-primary js-new-topic-request' do %>
+        <span class="fa fa-plus fa-lg"></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% @topic_requests.each do |topic_request| %>
+  <% voteable = current_user && topic_request.voteable?(current_user) %>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card topic-request-block-container">
+        <!-- TODO: on hover this should change background color -->
+        <!-- TODO: this should be clickable to go to the full topic request page -->
+        <div class="card-block topic-request-block" path="<%= topic_request_path(topic_request) %>">
+          <div style="float: left">
+            <!-- TODO: on hover this should show the desctiption -->
+            <h6><%= topic_request.title %></h6>
+          </div>
+          <div class="down-vote-container">
+            <button href="#" class="btn btn-danger down-vote" path="<%= downvote_topic_request_path(topic_request) %>" <%= voteable ? '' : 'disabled' %>>
+              <i class="fa fa-thumbs-down"></i>
+              <span class="badge"><%= topic_request.down_vote_count %></span>
+            </button>
+          </div>
+          <div class="up-vote-container">
+            <button href="#" class="btn btn-success up-vote" path="<%= upvote_topic_request_path(topic_request) %>" <%= voteable ? '' : 'disabled' %>>
+              <span class="badge"><%= topic_request.up_vote_count %></span>
+              <i class="fa fa-thumbs-up"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <% if topic_request == @topic_requests.last %>
+        <div class="card topic-request-block-container">
+          <div class="card-block topic-request-block topic-request-block-final" path="<%= topic_requests_path %>">
+            View More Topic Requests
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
