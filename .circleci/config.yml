@@ -47,6 +47,8 @@ jobs:
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
+        environment:
+        - DATABASE_URL: "postgres://reciprocate_life@localhost:5432/reciprocate_life_test"
 
       # run tests!
       - run:
