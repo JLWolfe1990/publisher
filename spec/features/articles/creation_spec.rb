@@ -29,7 +29,7 @@ feature 'Creation', type: :feature, js: true do
 
       click_on 'Create Topic request'
 
-      expect(page).to have_current_path(root_path)
+      expect(page).to have_current_path(topic_requests_path)
     end
 
     it 'should not be able to create an article' do

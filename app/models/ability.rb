@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Article
+    can [:welcome, :read], Article
     can :read, TopicRequest
     can [:show, :create], Search
     can :subscribe, User

@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   enum role: [:admin, :contributor]
+
+  has_many :votes, dependent: :nullify
 end

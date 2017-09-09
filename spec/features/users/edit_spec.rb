@@ -3,11 +3,15 @@ require 'rails_helper'
 feature 'Edit account', type: :feature, js: true do
   context 'when the user is signed in' do
     let :user do
-      FactoryGirl.create :user, password: 'fakepass', password_confirmation: 'fakepass'
+      FactoryGirl.create :user, password: password, password_confirmation: password
     end
 
     let :password do
       'fakepass'
+    end
+
+    let :new_password do
+      'fakepass1'
     end
 
     let :new_name do
@@ -15,10 +19,10 @@ feature 'Edit account', type: :feature, js: true do
     end
 
     before do
-      signin user.email, password
+      signin user.email, 'fakepass'
     end
 
-    it 'should be able to create a topic request' do
+    it 'should be able to update the user\'s name' do
       find('.js-user-dropdown').click
 
       click_on 'Edit account'

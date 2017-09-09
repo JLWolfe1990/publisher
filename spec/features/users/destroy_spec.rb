@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Edit account', type: :feature, js: true do
+feature 'Destroy account', type: :feature, js: true do
   context 'when the user is signed in' do
     let :user do
       FactoryGirl.create :user, password: 'fakepass', password_confirmation: 'fakepass'
@@ -18,25 +18,19 @@ feature 'Edit account', type: :feature, js: true do
       signin user.email, password
     end
 
-    it 'should be able to create a topic request' do
-      find('.js-user-dropdown').click
-
-      click_on 'Edit account'
+    it 'should be able to destroy his account' do
+      visit edit_user_registration_path(user)
 
       expect(page).to have_content('Edit User')
 
-      fill_in 'user_name', with: new_name
-      fill_in 'user_current_password', with: password
+      click_on 'Cancel my account'
 
-      click_on 'Update'
+      expect {
+        page.driver.browser.switch_to.alert.accept
+        sleep 1
+      }.to change(User, :count).by(-1)
 
-      find('.js-user-dropdown').click
-
-      click_on 'Edit account'
-
-      expect(page).to have_content('Edit User')
-
-      expect(find_field('user_name').value).to eq(new_name)
+      expect(page).to have_content('Sign in')
     end
   end
 end

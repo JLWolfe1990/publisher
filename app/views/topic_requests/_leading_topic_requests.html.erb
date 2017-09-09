@@ -40,8 +40,8 @@
       </div>
 
       <% if topic_request == @topic_requests.last %>
-        <div class="card topic-request-block-container">
-          <div class="card-block topic-request-block topic-request-block-final" path="<%= topic_requests_path %>">
+        <div class="card topic-request-block-container" onclick="location.href = '<%= topic_requests_path %>'">
+          <div class="card-block topic-request-block topic-request-block-final">
             View More Topic Requests
           </div>
         </div>

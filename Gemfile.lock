@@ -55,6 +55,9 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    bootstrap4-kaminari-views (1.0.0)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.16.0)
@@ -317,6 +320,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   better_errors
+  bootstrap4-kaminari-views
   byebug
   cancancan
   capybara

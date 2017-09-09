@@ -1,10 +1,15 @@
 class Article < ActiveRecord::Base
   include PgSearch
+
+  paginates_per 5
+
   multisearchable against: [:headline, :description, :body]
 
   # :headline, :description, :body
 
   belongs_to :user
+
+  has_many :votes, as: :voteable
 
   has_attached_file :image, styles: {
     thumb: '100x100>',

@@ -4,7 +4,7 @@ class TopicRequest < ActiveRecord::Base
 
   belongs_to :requester, class_name: 'User'
 
-  has_many :votes, as: :voteable
+  has_many :votes, as: :voteable, dependent: :destroy
 
   validates :title, :description, presence: true
 
@@ -13,6 +13,7 @@ class TopicRequest < ActiveRecord::Base
   end
 
   def upvote(user)
+    touch
     votes.create user: user, category: Vote.categories[:up]
   end
 
@@ -21,10 +22,15 @@ class TopicRequest < ActiveRecord::Base
   end
 
   def downvote(user)
+    touch
     votes.create user: user, category: Vote.categories[:down]
   end
 
   def down_vote_count
     votes.down_votes.count
+  end
+
+  def tracks_popularity?
+    true
   end
 end

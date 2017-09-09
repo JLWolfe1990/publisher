@@ -3,9 +3,13 @@ class ArticlesController < ApplicationController
 
   respond_to :html
 
-  def index
-    @topic_requests = TopicRequest.order(created_at: :asc).limit(10)
+  def welcome
+    @topic_requests = TopicRequest.order(popularity: :desc, updated_at: :desc).limit(10)
     @articles = @articles.order(created_at: :desc).limit(3)
+  end
+
+  def index
+    @articles = @articles.order(created_at: :desc).page(params[:page])
   end
 
   def new

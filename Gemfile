@@ -18,6 +18,7 @@ gem 'kaminari'
 gem 'simple_form'
 gem 'pg_search'
 gem 'dotenv'
+gem 'bootstrap4-kaminari-views'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end

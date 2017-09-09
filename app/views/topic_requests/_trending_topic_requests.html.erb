@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-10">
-    <h2>Leading Topic Requests</h2>
+    <h2>Recent Topic Requests</h2>
   </div>
   <div class="col-sm-2 text-right">
     <% if can? :create, TopicRequest %>
@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<% @topic_requests.each do |topic_request| %>
+<% @recent_requests.each do |topic_request| %>
   <% voteable = current_user && topic_request.voteable?(current_user) %>
 
   <div class="row">
@@ -38,14 +38,6 @@
           </div>
         </div>
       </div>
-
-      <% if topic_request == @topic_requests.last %>
-        <div class="card topic-request-block-container">
-          <div class="card-block topic-request-block topic-request-block-final" path="<%= topic_requests_path %>">
-            View More Topic Requests
-          </div>
-        </div>
-      <% end %>
     </div>
   </div>
 <% end %>

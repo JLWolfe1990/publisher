@@ -1,6 +1,6 @@
 $(document).ready(function() {
   function castVote(event) {
-    event.stopPropigation();
+    event.stopPropagation();
 
     var path = $(this).attr('path');
 
@@ -12,7 +12,12 @@ $(document).ready(function() {
   function viewTopicRequest() {
     var path = $(this).attr('path');
 
-    location.href = path;
+    $.getJSON(path, function (data) {
+      $('#genericModalTitle').html(data.title);
+      $('#genericModalBody').html(data.description);
+
+      $('#genericModal').modal({ show: true });
+    });
   }
 
   _.each($('.topic-request-block button'), function(el) {

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'articles#index'
+  root to: 'articles#welcome'
   devise_for :users
 
   resources :articles, only: [:index, :new, :create, :show]
-  resources :topic_requests, only: [:new, :create, :show] do
+  resources :topic_requests, only: [:new, :create, :show, :index] do
     post :upvote, on: :member
     post :downvote, on: :member
   end
