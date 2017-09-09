@@ -17,6 +17,8 @@ jobs:
          environment:
          - POSTGRES_USER=ubuntu
          - POSTGRES_DB=reciprocate_life_test
+         - DATABASE_URL=postgres://reciprocate_life@localhost:5432/reciprocate_life_test
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -47,8 +49,6 @@ jobs:
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
-        environment:
-        - DATABASE_URL: "postgres://reciprocate_life@localhost:5432/reciprocate_life_test"
 
       # run tests!
       - run:
