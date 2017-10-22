@@ -1,36 +1,37 @@
-class ArticlesController < ApplicationController
+class CommentsController < ApplicationController
+  # load_and_authorize_resource :comment, through: :commentable
   load_and_authorize_resource
 
-  respond_to :html
-
-  def welcome
-    @topic_requests = TopicRequest.order(popularity: :desc, updated_at: :desc).limit(10)
-    @articles = @articles.order(created_at: :desc).limit(3)
-  end
-
-  def index
-    @articles = @articles.order(created_at: :desc).page(params[:page])
-  end
+  respond_to :json, :html
 
   def new
-    respond_with(@article)
-  end
+    @commentable = Article.find(params[:article_id]) if params[:article_id]
+    @comment.user = current_user
 
-  def create
-    respond_with(@article) do |format|
-      unless @article.save
-        format.html { render :new }
+    respond_with(@comment) do |format|
+      format.html do
+        render partial: 'comments/new'
       end
     end
   end
 
-  def show
-    respond_with(@article)
+  def create
+    @comment.save
+
+    redirect_to polymorphic_path(@comment.commentable)
+  end
+
+  def destroy
+    url = polymorphic_path(@comment.commentable)
+
+    @comment.destroy
+
+    redirect_to url
   end
 
   private
 
   def create_params
-    params.require(:article).permit(:body, :description, :headline, :image)
+    params.require(:comment).permit(:body, :commentable_id, :commentable_type, :user_id)
   end
 end

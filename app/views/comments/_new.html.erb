@@ -1,0 +1,23 @@
+<br/>
+<div class="row">
+  <div class="col-sm-12">
+    <div id="new-comment" class="card">
+      <div class="card-block">
+        <div class="row">
+          <div class="col-sm-3">
+            <%= render partial: 'comments/profile_info', locals: { comment: @comment } %>
+          </div>
+          <div class="col-sm-9">
+            <%= simple_form_for @comment do |f| %>
+              <%= f.hidden_field :commentable_type, value: @commentable.class.to_s %>
+              <%= f.hidden_field :commentable_id, value: @commentable.id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.input :body, label: false %>
+              <%= f.submit 'Save Comment', class: 'btn btn-success float-right' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

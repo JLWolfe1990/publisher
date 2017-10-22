@@ -10,6 +10,7 @@ class Article < ActiveRecord::Base
   belongs_to :user
 
   has_many :votes, as: :voteable
+  has_many :comments, as: :commentable, dependent: :destroy
 
   has_attached_file :image, styles: {
     thumb: '100x100>',

@@ -1,11 +1,24 @@
 require 'rails_helper'
 
-feature 'Creation', type: :feature, js: true do
-  context 'when the user is not signed in' do
-    it 'should not see the create topic request link' do
-      visit root_path
+feature 'Show', type: :feature, js: true do
+  let :article do
+    FactoryGirl.create(:article)
+  end
 
-      expect(page).to_not have_css('.js-new-topic-request')
+  context 'when the user is not signed in' do
+    it 'should be able to read an article' do
+      visit article_path(article)
+
+      expect(page).to have_content('Whoa! It looks like you have not joined our online community, yet!')
+
+      expect(page).to have_content(article.headline)
+      expect(page).to have_content(article.body)
+    end
+
+    it 'should not be able to comment on the article' do
+      visit article_path(article)
+
+      expect(page).to have_content('Sign in or Sign up to Comment on this Article')
     end
   end
 
@@ -14,51 +27,110 @@ feature 'Creation', type: :feature, js: true do
       FactoryGirl.create :user, password: 'fakepass', password_confirmation: 'fakepass'
     end
 
+    let :comment_body do
+      'Inspirational text'
+    end
+
     before do
       signin user.email, 'fakepass'
     end
 
-    it 'should be able to create a topic request' do
-      visit root_path
+    it 'should be able to view the article' do
+      visit article_path(article)
 
-      expect(page).to have_css('.js-new-topic-request')
-      find('.js-new-topic-request').click
-
-      fill_in('topic_request_title', with: 'TR1')
-      fill_in('topic_request_description', with: 'TR1 Desc')
-
-      click_on 'Create Topic request'
-
-      expect(page).to have_current_path(topic_requests_path)
+      expect(page).to have_content(article.headline)
+      expect(page).to have_content(article.body)
     end
 
-    it 'should not be able to create an article' do
-      visit root_path
+    it 'should be able to comment on the article' do
+      visit article_path(article)
 
-      expect(page).to_not have_css('.js-new-article')
-    end
+      click_on('Comment on this Article')
 
-    context 'and the user is a contributor' do
-      let :user do
-        FactoryGirl.create :user, :contributor, password: 'fakepass', password_confirmation: 'fakepass'
-      end
+      expect {
+        click_button 'Save Comment'
+      }.to_not change(Comment, :count)
 
-      it 'should be able to create an article' do
-        visit root_path
+      fill_in 'comment_body', with: comment_body
 
-        expect(page).to have_css('.js-new-article')
+      expect {
+        click_button 'Save Comment'
+      }.to change(Comment, :count).by(1)
+
+      within "#comment-#{Comment.last.id}" do
+        expect(page).to have_content(user.name)
+        expect(page).to have_content("Member Since: #{user.created_at.strftime('%b %Y')}")
+        expect(page).to have_content('from about less than a minute ago')
       end
     end
 
-    context 'and the user is an admin' do
-      let :user do
-        FactoryGirl.create :user, :admin, password: 'fakepass', password_confirmation: 'fakepass'
+    context 'when there is a comment that the user created' do
+      before do
+        article.comments.create! user_id: user.id, body: comment_body
       end
 
-      it 'should be able to create an article' do
-        visit root_path
+      it 'should be able to be deleted' do
+        visit article_path(article)
 
-        expect(page).to have_css('.js-new-article')
+        expect(page).to have_content(comment_body)
+
+        within "#comment-#{Comment.last.id}" do
+          expect(page).to have_css('.fa-trash')
+
+          find('.fa-trash').click
+        end
+
+        a = page.driver.browser.switch_to.alert
+        a.accept
+
+        sleep 1
+        expect(page).to have_content(article.headline)
+        expect(page).to have_content(article.body)
+      end
+    end
+
+    context 'when there is a comment that some other user created' do
+      let :other_user do
+        FactoryGirl.create(:user)
+      end
+
+      before do
+        article.comments.create! user_id: other_user.id, body: comment_body
+      end
+
+      it 'should not be able to be deleted' do
+        visit article_path(article)
+
+        expect(page).to have_content(comment_body)
+
+        within "#comment-#{Comment.last.id}" do
+          expect(page).to_not have_css('.fa-trash')
+        end
+      end
+
+      context 'when the current user is an admin' do
+        before do
+          user.admin!
+        end
+
+        it 'should be able to be deleted' do
+          visit article_path(article)
+
+          expect(page).to have_content(comment_body)
+
+          within "#comment-#{Comment.last.id}" do
+            expect(page).to have_css('.fa-trash')
+
+            find('.fa-trash').click
+          end
+
+          a = page.driver.browser.switch_to.alert
+          a.accept
+
+          sleep 1
+          expect(page).to have_content(article.headline)
+          expect(page).to have_content(article.body)
+        end
       end
     end
   end

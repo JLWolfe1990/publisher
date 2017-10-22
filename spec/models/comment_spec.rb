@@ -1,13 +1,17 @@
-describe User do
+describe Comment do
+  context 'validations' do
+    it 'should not be valid without a user' do
+      comment = Comment.new user_id: nil
+      comment.save
 
-  before(:each) { @user = User.new(email: 'user@example.com') }
+      expect(comment.errors).to include(:user_id)
+    end
 
-  subject { @user }
+    it 'should not be valid without a body' do
+      comment = Comment.new body: nil
+      comment.save
 
-  it { should respond_to(:email) }
-
-  it "#email returns a string" do
-    expect(@user.email).to match 'user@example.com'
+      expect(comment.errors).to include(:body)
+    end
   end
-
 end
