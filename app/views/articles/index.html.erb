@@ -17,18 +17,7 @@
     <% @articles.each do |article| %>
       <div class="row">
         <div class="col-sm-12">
-          <div class="card article-card">
-            <div class="card-block article-block" id="<%= article.id %>" show-path="<%= article_path(article) %>">
-              <h3 class="card-title"><%= article.headline %></h3>
-
-              <p class="card-text">
-              <div style="width: 200px; height: 200px; float: left; margin: 5px 5px 5px 5px">
-                <%= image_tag article.image.url(:small) %>
-              </div>
-              <%= article.description.truncate(600).html_safe %>
-              </p>
-            </div>
-          </div>
+          <%= render partial: 'articles/article', locals: { article: article } %>
         </div>
       </div>
     <% end %>

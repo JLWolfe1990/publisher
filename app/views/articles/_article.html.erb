@@ -1,0 +1,12 @@
+<div class="card article-card">
+  <div class="card-block article-block" id="<%= article.id %>" show-path="<%= article_path(article) %>">
+    <h3 class="card-title"><%= article.headline %></h3>
+
+    <p class="card-text">
+    <div style="width: 200px; height: 200px; float: left; margin: 5px 5px 5px 5px">
+      <%= image_tag article.image.url(:small) %>
+    </div>
+    <%= raw article.description %>
+    </p>
+  </div>
+</div>
