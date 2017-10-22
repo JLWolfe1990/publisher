@@ -1,22 +1,37 @@
-<% @search_results.each do |klass, documents| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <h2>
-        <%= klass.to_s.underscore.humanize.titlecase %>
-      </h2>
-    </div>
+<div class="row">
+  <div class="col-sm-12">
+    <% @search_results.each do |klass, documents| %>
+      <div class="card">
+        <div class="card-block">
+          <h2 class="card-title">
+            <%= klass.to_s.underscore.humanize.titlecase %>
+          </h2>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <% documents.each do |document| %>
+            <% object = document.searchable %>
+
+            <li class="list-group-item">
+                <div class="col-sm-6">
+                  <div class="card-block">
+                    <div class="card-link">
+                      <%= link_to (object.try(:title) || object.try(:headline)), polymorphic_path(object) %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <% if object.is_a? Article %>
+                    <%= raw object.description %>
+                  <% else %>
+                    <%= object.description %>
+                  <% end %>
+                </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <br/>
+    <% end %>
   </div>
-
-  <% documents.each do |document| %>
-    <% object = document.searchable %>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <%= link_to (object.try(:title) || object.try(:headline)), polymorphic_path(object) %>
-      </div>
-      <div class="col-sm-6">
-        <%= object.description %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+</div>
