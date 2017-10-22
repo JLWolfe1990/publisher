@@ -1,0 +1,9 @@
+<div class="name-badge">
+  <strong>
+    <%= comment.user.name %>
+  </strong>
+</div>
+
+<div>
+  <small>Member Since: <span><%= comment.user.created_at.strftime('%b %Y') %></span></small>
+</div>

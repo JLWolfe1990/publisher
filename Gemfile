@@ -3,7 +3,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-ruby '2.4.0'
+ruby '2.4.1'
 gem 'rails', '~> 5.0.2'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -22,6 +22,7 @@ gem 'bootstrap4-kaminari-views'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
+gem 'rails-timeago'
 
 group :development, :test do
   gem 'byebug', platform: :mri

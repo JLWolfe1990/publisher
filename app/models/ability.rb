@@ -9,8 +9,11 @@ class Ability
 
     return unless user
 
+    can [:create, :new], Comment
+    can :destroy, Comment, user_id: user.id
     can [:create, :upvote, :downvote], TopicRequest
     give_contributor_permissions if user.contributor? || user.admin?
+    give_admin_permissions if user.admin?
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -37,6 +40,10 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+  end
+
+  def give_admin_permissions
+    can :destroy, Comment
   end
 
   def give_contributor_permissions

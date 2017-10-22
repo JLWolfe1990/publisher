@@ -15,4 +15,5 @@
 //= require tether
 //= require bootstrap.min
 //= require underscore
+//= require rails-timeago
 //= require_tree .

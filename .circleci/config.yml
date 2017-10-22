@@ -8,11 +8,22 @@ jobs:
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
-      
+         environment:
+           AWS_REGION: 'us-west-2'
+           S3_BUCKET_NAME: 'reciprocate-life'
+           AWS_ACCESS_KEY_ID: 'fake'
+           AWS_SECRET_ACCESS_KEY: 'fake'
+           AWS_S3_HOST_NAME: 'reciprocate-life.s3.amazonaws.com'
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
+       - image: circleci/postgres:9.4
+         environment:
+           POSTGRES_USER: reciprocate_life
+           POSTGRES_DB: reciprocate_life_test
+           POSTGRES_PASSWORD: ""
 
     working_directory: ~/repo
 
@@ -45,13 +56,7 @@ jobs:
           name: run tests
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-            
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            "${TEST_FILES}"
+            bundle exec rspec spec
 
       # collect reports
       - store_test_results:
