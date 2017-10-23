@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'articles#welcome'
   devise_for :users
 
-  resources :articles, only: [:index, :new, :create, :show] do
+  resources :articles do
     resources :comments, only: [:new]
   end
 

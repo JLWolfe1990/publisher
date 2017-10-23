@@ -28,9 +28,26 @@ class ArticlesController < ApplicationController
     respond_with(@article)
   end
 
+  def edit
+  end
+
+  def update
+    respond_with(@article) do
+      if @article.update update_params
+        return render :show
+      else
+        return render :edit
+      end
+    end
+  end
+
   private
 
   def create_params
     params.require(:article).permit(:body, :description, :headline, :image)
+  end
+
+  def update_params
+    params.require(:article).permit(:body, :description, :headline)
   end
 end
