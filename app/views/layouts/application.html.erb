@@ -9,12 +9,12 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
+    <div class="container space-city-container">
+      <header>
+        <%= render 'layouts/navigation' %>
+      </header>
+      <main role="main">
        <%= render 'layouts/messages' %>
-      <div class="container">
 
         <%= yield %>
 
@@ -34,9 +34,8 @@
             </div>
           </div>
         </div>
-
-      </div>
-    </main>
+      </main>
+    </div>
 
     <footer class="footer">
       <div class="container">

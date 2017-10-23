@@ -11,6 +11,8 @@
         <%= @article.headline %>
       </h1>
     </div>
+    <br/>
+    <br/>
 
     <div class="article-body">
       <%= h @article.body.html_safe %>
@@ -63,22 +65,19 @@
               <%= comment.body %>
             </div>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-sm-12">
-              <% if can? :destroy, comment %>
-                <div class="float-right destroy-comment-icon">
-                  <%= link_to comment_path(comment), method: :delete, data: { confirm: 'Are you sure that you would like to delete this comment?' } do %>
-                    <span class="fa fa-trash fa-sm"></span>
-                  <% end %>
-                </div>
+        <div class="card-footer muted">
+          <% if can? :destroy, comment %>
+            <div class="float-right destroy-comment-icon">
+              <%= link_to comment_path(comment), method: :delete, data: { confirm: 'Are you sure that you would like to delete this comment?' } do %>
+                <span class="fa fa-trash fa-sm"></span>
               <% end %>
-
-              <small class="float-right comment-created-container">
-                <span> from about <%= timeago_tag comment.created_at %></span>
-              </small>
             </div>
-          </div>
+          <% end %>
+          <small class="float-right comment-created-container">
+            <span> from about <%= timeago_tag comment.created_at %></span>
+          </small>
         </div>
       </div>
       <br/>
