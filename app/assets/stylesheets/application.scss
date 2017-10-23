@@ -24,8 +24,13 @@
 @import 'topic_requests';
 @import 'users';
 
-main {
+.space-city-container {
+  padding-top: 12pt;
   padding-bottom: 24pt;
+  border-left: 1pt solid #DDD;
+  border-right: 1pt solid #DDD;
+  background:  white;
+  min-height: calc(100vh - 60px);
 }
 
 $background-color: #FAFAFA;
@@ -40,4 +45,5 @@ body {
   radial-gradient(circle at 0    50%, white 5%, $background-color 6%, $background-color 15%, white 16%, white 20%, $background-color 21%, $background-color 30%, white 31%, white 35%, $background-color 36%, $background-color 45%, white 46%, white 49%, transparent 50%, transparent);
   background-size:18px 9px;
 
+  min-height: 100%;
 }
