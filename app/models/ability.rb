@@ -12,7 +12,7 @@ class Ability
     can [:create, :new], Comment
     can :destroy, Comment, user_id: user.id
     can [:create, :upvote, :downvote], TopicRequest
-    give_contributor_permissions if user.contributor? || user.admin?
+    give_contributor_permissions(user) if user.contributor? || user.admin?
     give_admin_permissions if user.admin?
     # Define abilities for the passed in user here. For example:
     #
@@ -44,9 +44,11 @@ class Ability
 
   def give_admin_permissions
     can :destroy, Comment
+    can :manage, Article
   end
 
-  def give_contributor_permissions
-    can [:create], Article
+  def give_contributor_permissions(user)
+    can :create, Article
+    can :update, Article, user_id: user.id
   end
 end
