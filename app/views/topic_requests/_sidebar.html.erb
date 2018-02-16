@@ -1,0 +1,13 @@
+<% voteable = current_user && topic_request.voteable?(current_user) %>
+
+<div class="card topic-request-block-container">
+  <div class="card-block topic-request-block" path="<%= topic_request_path(topic_request) %>">
+    <div>
+      <!-- TODO: on hover this should show the desctiption -->
+      <h6><%= topic_request.title %></h6>
+    </div>
+    <div class="float-right">
+      <%= render partial: 'topic_requests/votable', locals: { topic_request: topic_request, voteable: voteable} %>
+    </div>
+  </div>
+</div>

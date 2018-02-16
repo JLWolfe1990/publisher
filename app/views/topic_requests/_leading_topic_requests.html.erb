@@ -12,32 +12,9 @@
 </div>
 
 <% @topic_requests.each do |topic_request| %>
-  <% voteable = current_user && topic_request.voteable?(current_user) %>
-
   <div class="row">
     <div class="col-sm-12">
-      <div class="card topic-request-block-container">
-        <!-- TODO: on hover this should change background color -->
-        <!-- TODO: this should be clickable to go to the full topic request page -->
-        <div class="card-block topic-request-block" path="<%= topic_request_path(topic_request) %>">
-          <div style="float: left">
-            <!-- TODO: on hover this should show the desctiption -->
-            <h6><%= topic_request.title %></h6>
-          </div>
-          <div class="down-vote-container">
-            <button href="#" class="btn btn-danger down-vote" path="<%= downvote_topic_request_path(topic_request) %>" <%= voteable ? '' : 'disabled' %>>
-              <i class="fa fa-thumbs-down"></i>
-              <span class="badge"><%= topic_request.down_vote_count %></span>
-            </button>
-          </div>
-          <div class="up-vote-container">
-            <button href="#" class="btn btn-success up-vote" path="<%= upvote_topic_request_path(topic_request) %>" <%= voteable ? '' : 'disabled' %>>
-              <span class="badge"><%= topic_request.up_vote_count %></span>
-              <i class="fa fa-thumbs-up"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      <%= render partial: 'topic_requests/sidebar', locals: { topic_request: topic_request } %>
 
       <% if topic_request == @topic_requests.last %>
         <div class="card topic-request-block-container" onclick="location.href = '<%= topic_requests_path %>'">

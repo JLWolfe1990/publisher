@@ -16,6 +16,8 @@
       <main role="main">
        <%= render 'layouts/messages' %>
 
+        <%= render partial: 'users/subscribe' %>
+
         <%= yield %>
 
         <div class="modal fade" id="genericModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -39,11 +41,13 @@
 
     <footer class="footer">
       <div class="container">
-        <div class="text-left left-side">
-          <div class="text-muted">&copy; 2017 Reciprocate.Life</div>
-        </div>
-        <div class="text-right right-side">
-          <div class="text-muted">Brought to Your Courtesy of Space City Innovators, LLC</div>
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="text-muted">&copy; 2017 Reciprocate.Life</div>
+          </div>
+          <div class="col-md-6 hidden-sm-down text-right">
+            <div class="text-muted">Brought to Your Courtesy of Space City Innovators, LLC</div>
+          </div>
         </div>
       </div>
     </footer>

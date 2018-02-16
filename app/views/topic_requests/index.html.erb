@@ -20,22 +20,14 @@
           <div class="card article-card">
             <div class="card-block topic-request-block" id="<%= topic_request.id %>" show-path="<%= topic_request_path(topic_request) %>">
               <% voteable = current_user && topic_request.voteable?(current_user) %>
-              <div class="down-vote-container">
-                <button href="#" class="btn btn-danger down-vote" path="<%= downvote_topic_request_path(topic_request) %>" <%= voteable ? '' : 'disabled' %>>
-                  <i class="fa fa-thumbs-down"></i>
-                  <span class="badge"><%= topic_request.down_vote_count %></span>
-                </button>
-              </div>
-              <div class="up-vote-container">
-                <button href="#" class="btn btn-success up-vote" path="<%= upvote_topic_request_path(topic_request) %>" <%= voteable ? '' : 'disabled' %>>
-                  <span class="badge"><%= topic_request.up_vote_count %></span>
-                  <i class="fa fa-thumbs-up"></i>
-                </button>
-              </div>
 
               <h3 class="card-title"><%= topic_request.title %></h3>
 
-              <%= topic_request.description.truncate(600) %>
+              <div>
+                <%= topic_request.description.truncate(600) %>
+              </div>
+
+              <%= render partial: 'topic_requests/votable', locals: { topic_request: topic_request, voteable: voteable } %>
             </div>
           </div>
         </div>
