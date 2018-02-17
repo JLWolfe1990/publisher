@@ -1,12 +1,20 @@
 <%# navigation styled for Bootstrap 4.0 %>
 <div class="container">
-  <div class="search-box">
-    <%= simple_form_for Search.new, class: 'form-inline my-2 my-lg-0', html: {style: 'height: 38px'} do |f| %>
-      <%= f.input :query, label: false, placeholder: 'Search', class: 'form-control mr-sm-2' %>
-      <%= f.input :user_id, value: current_user.try(:id), as: :hidden, label: false %>
-    <% end %>
+  <div class="row logo-row">
+    <div class="col-sm-12 col-md-6 logo-container">
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png' %>
+      <% end %>
+    </div>
+    <div class="col-sm-12 col-md-6 search-container">
+      <div class="search-box">
+        <%= simple_form_for Search.new, class: 'form-inline my-2 my-lg-0', html: {style: 'height: 38px'} do |f| %>
+          <%= f.input :query, label: false, placeholder: 'Search', class: 'form-control mr-sm-2' %>
+          <%= f.input :user_id, value: current_user.try(:id), as: :hidden, label: false %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div style="clear: both"></div>
 
   <div class="header clearfix">
     <nav class="navbar navbar-toggleable-md navbar-light">
@@ -19,7 +27,6 @@
               aria-label="Toggle navigation">
         <span class="navbar-toggler-icon fa fa-navicon fa-lg"></span>
       </button>
-      <%= link_to 'Reciprocate.Life', root_path, class: 'major-brand' %>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -29,6 +36,7 @@
           <%= render 'layouts/nav_links_for_auth' %>
         </ul>
       </div>
+      <span class="navbar-brand">&nbsp;</span>
     </nav>
   </div>
 </div>

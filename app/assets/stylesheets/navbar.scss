@@ -4,9 +4,12 @@
   margin-top: 8px;
 }
 
-.search-box {
-  float: right;
-  margin-bottom: 12pt;
+.logo-row {
+  margin-bottom: 16px;
+
+  .search-box {
+    margin-top: 15px
+  }
 }
 
 .navbar {
@@ -18,7 +21,15 @@
     color: $theme-grey;
   }
 
+  .navbar-toggler {
+    background-color: transparent;
+    border-color: transparent;
+    margin-top: 5px;
+  }
+
   .navbar-toggler-icon {
     color: white;
+    width: auto;
+    height: auto;
   }
 }
