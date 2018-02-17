@@ -23,4 +23,7 @@ class Article < ActiveRecord::Base
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
+  def share_text
+    "Check out this awesome post on Reciprocate.Life! #{headline}"
+  end
 end

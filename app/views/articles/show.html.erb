@@ -18,6 +18,8 @@
   </div>
 </div>
 <br/>
+<%= render partial: 'articles/share_links', locals: { object: @article} %>
+<br/>
 <% if current_user %>
   <div class="row">
     <div class="col-sm-12">
