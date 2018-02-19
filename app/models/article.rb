@@ -24,6 +24,6 @@ class Article < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def share_text
-    "Check out this awesome post on Reciprocate.Life! #{headline}"
+    "Check out this awesome post on Reciprocate.Life called \"#{headline}\""
   end
 end
