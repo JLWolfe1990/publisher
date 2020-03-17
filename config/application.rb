@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module ReciprocateLife
+module Publisher
   class Application < Rails::Application
     Dotenv.load
     # Use the responders controller from the responders gem
