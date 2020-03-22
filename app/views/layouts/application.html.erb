@@ -2,11 +2,21 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Reciprocate Life" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Reciprocate Life" %>">
+    <title><%= content_for?(:title) ? yield(:title) : ENV['APP_DISPLAY_NAME'] %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : ENV['APP_NAME'] %>">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82632301-4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', Rails.application.credentials.google['ANALYTICS_CODE']);
+    </script>
   </head>
   <body>
     <div class="container space-city-container">
@@ -43,10 +53,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <div class="text-muted">&copy; 2017 Reciprocate.Life</div>
+            <div class="text-muted">&copy; <%= ENV['APP_DISPLAY_NAME'] %></div>
           </div>
           <div class="col-md-6 hidden-sm-down text-right">
-            <div class="text-muted">Brought to Your Courtesy of Space City Innovators, LLC</div>
+            <div class="text-muted">Courtesy of Space City Innovators, LLC</div>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-8">
         <h1>
-          <u>Articles</u>
+          <u>Browse Articles</u>
         </h1>
       </div>
       <div class="col-sm-4 text-right">
@@ -20,6 +20,8 @@
           <%= render partial: 'articles/article', locals: { article: article } %>
         </div>
       </div>
+
+      <%= render partial: 'articles/divider' unless article == @articles.last%>
     <% end %>
 
     <div class="row justify-content-center">

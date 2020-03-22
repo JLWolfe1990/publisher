@@ -2,5 +2,5 @@
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.association :requester, value: current_user.try(:id), as: :hidden %>
-  <%= f.submit %>
+  <%= f.submit 'Request', class: 'btn btn-success' %>
 <% end %>

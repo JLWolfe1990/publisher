@@ -21,6 +21,8 @@
         </div>
       </div>
 
+      <%= render partial: 'articles/divider' %>
+
       <% if article == @articles.last %>
         <div class="row">
           <div class="col-sm-12">
@@ -39,7 +41,7 @@
 
   </div>
   <div class="col-sm-5">
-    <%= render partial: 'articles/reciprocate_life_about_mini' %>
+    <%= render partial: 'articles/' + ENV['APP_NAME'].downcase %>
 
     <br/>
 

@@ -8,6 +8,7 @@ class SearchesController < ApplicationController
   end
 
   def create
+    @search.user = current_user
     @search.save
     redirect_to search_path(@search)
   end

@@ -1,5 +1,5 @@
 class TopicRequest < ActiveRecord::Base
-  include PgSearch
+  include PgSearch::Model
   multisearchable against: [:title, :description]
 
   belongs_to :requester, class_name: 'User'

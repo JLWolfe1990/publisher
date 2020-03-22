@@ -1,8 +1,12 @@
 <li class="nav-item">
-  <%= link_to 'Articles', articles_path, class: "nav-link #{is_active?('articles')}" %>
+  <%= link_to 'Latest', root_path, class: "nav-link #{is_welcome_path? ? 'active' : ''}" %>
 </li>
 
 <li class="nav-item">
-  <%= link_to 'Topics', topic_requests_path, class: "nav-link #{is_active?('topic_requests')}" %>
+  <%= link_to 'Browse', articles_path, class: "nav-link #{is_active?('articles')}" %>
+</li>
+
+<li class="nav-item">
+  <%= link_to 'Vote', topic_requests_path, class: "nav-link #{is_active?('topic_requests')}" %>
 </li>
 

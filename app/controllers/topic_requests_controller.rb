@@ -14,6 +14,7 @@ class TopicRequestsController < ApplicationController
   end
 
   def create
+    @topic_request.requester = current_user
     respond_with(@topic_request) do |format|
       if @topic_request.save
         format.html { redirect_to topic_requests_path }

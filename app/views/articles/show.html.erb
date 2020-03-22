@@ -1,3 +1,13 @@
+<% if current_user&.contributor? || current_user&.admin? %>
+  <div class="row">
+    <div class="col-sm-12 text-right">
+      <div class="alert alert-info" role="alert">
+        <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-info' %>
+      </div>
+    </div>
+  </div>
+  <br/>
+<% end %>
 <div class="row">
   <div class="col-sm-12">
     <div class="article-image">

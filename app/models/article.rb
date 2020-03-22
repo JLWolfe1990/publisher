@@ -1,11 +1,11 @@
 class Article < ActiveRecord::Base
-  include PgSearch
+  include PgSearch::Model
 
   paginates_per 5
 
   multisearchable against: [:headline, :description, :body]
 
-  # :headline, :description, :body
+  enum status: { active: 'active', archived: 'archived', draft: nil }
 
   belongs_to :user
 
@@ -19,11 +19,11 @@ class Article < ActiveRecord::Base
     medium: '300x300>'
   }
 
-  validates :headline, :description, :body, presence: true
+  validates :headline, :description, :body, presence: true unless :draft?
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def share_text
-    "Check out this awesome post on Reciprocate.Life called \"#{headline}\""
+    "Check out this awesome post on ocate.Life called \"#{headline}\""
   end
 end

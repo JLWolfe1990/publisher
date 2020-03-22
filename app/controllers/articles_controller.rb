@@ -9,7 +9,8 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = @articles.order(created_at: :desc).page(params[:page])
+    @status = params[:status] || 'active'
+    @articles = @articles.order(created_at: :desc).where(status: @status).page(params[:page])
   end
 
   def new
@@ -17,10 +18,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    @article.user = current_user
+
     respond_with(@article) do |format|
-      unless @article.save
-        format.html { render :new }
-      end
+      format.html { render :new } unless @article.save!
     end
   end
 
@@ -44,10 +45,10 @@ class ArticlesController < ApplicationController
   private
 
   def create_params
-    params.require(:article).permit(:body, :description, :headline, :image)
+    params.require(:article).permit(:body, :description, :headline, :image, :status)
   end
 
   def update_params
-    params.require(:article).permit(:body, :description, :headline)
+    params.require(:article).permit(:body, :description, :headline, :image, :status)
   end
 end
