@@ -41,7 +41,7 @@
 
   </div>
   <div class="col-sm-5">
-    <%= render partial: 'articles/' + ENV['APP_NAME'].downcase %>
+    <%= render partial: 'articles/' + ENV['APP_NAME'].underscore.downcase %>
 
     <br/>
 

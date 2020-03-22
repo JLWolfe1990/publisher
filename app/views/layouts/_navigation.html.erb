@@ -3,8 +3,7 @@
   <div class="row logo-row">
     <div class="col-sm-12 col-md-6 logo-container">
       <%= link_to root_path do %>
-        <%#= render partial: 'layouts/' + ENV['APP_NAME'].downcase %>
-        <%= render partial: 'layouts/' + 'the_tech_life' %>
+        <%= render partial: 'layouts/' + ENV['APP_NAME'].underscore.downcase %>
       <% end %>
     </div>
     <div class="col-sm-12 col-md-6 search-container">
