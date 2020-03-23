@@ -9,14 +9,17 @@
     <%= csrf_meta_tags %>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82632301-4"></script>
+<!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82632301-4"></script>-->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', Rails.application.credentials.google['ANALYTICS_CODE']);
+      <% if Rails.env.production? %>
+        gtag('config', '<%= Rails.application.secrets.google['ANALYTICS_CODE'] %>');
+      <% end %>
     </script>
+    <link rel="icon" href="<%= image_url("#{ENV['APP_NAME'].underscore.downcase}_icon.png") %>" type="image/ico" />
   </head>
   <body>
     <div class="container space-city-container">
@@ -56,7 +59,7 @@
             <div class="text-muted">&copy; <%= ENV['APP_DISPLAY_NAME'] %></div>
           </div>
           <div class="col-md-6 hidden-sm-down text-right">
-            <div class="text-muted">Courtesy of Space City Innovators, LLC</div>
+            <div class="text-muted">Space City Innovators, LLC</div>
           </div>
         </div>
       </div>
