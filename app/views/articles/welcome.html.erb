@@ -1,23 +1,9 @@
 <div class="row">
   <div class="col-sm-7">
-    <div class="row">
-      <div class="col-sm-8">
-        <h1>
-          <u>Recent Articles</u>
-        </h1>
-      </div>
-      <div class="col-sm-4 text-right">
-        <% if can? :create, Article %>
-          <%= link_to new_article_path, class: 'btn btn-primary js-new-article' do %>
-            <span class="fa fa-plus fa-lg"></span>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
     <% @articles.each do |article| %>
       <div class="row">
         <div class="col-sm-12">
-          <%= render partial: 'articles/article', locals: { article: article } %>
+          <%= render partial: 'articles/article', locals: { article: article, size: :medium } %>
         </div>
       </div>
 
@@ -43,6 +29,8 @@
   <div class="col-sm-5">
     <%= render partial: 'articles/' + ENV['APP_NAME'].underscore.downcase %>
 
+    <br/>
+    <br/>
     <br/>
 
     <%= render partial: 'topic_requests/leading_topic_requests' %>

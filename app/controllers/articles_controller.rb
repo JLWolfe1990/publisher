@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  load_and_authorize_resource
+  before_action :find_article, only: :show
+  load_and_authorize_resource except: :show
 
   respond_to :html
 
@@ -44,11 +45,16 @@ class ArticlesController < ApplicationController
 
   private
 
+  def find_article
+    @article = Article.find_by(id: params[:id]) || Article.find_by(alt_id: params[:id])
+    authorize! :read, @article
+  end
+
   def create_params
-    params.require(:article).permit(:body, :description, :headline, :image, :status)
+    params.require(:article).permit(:body, :description, :headline, :image, :status, :alt_id)
   end
 
   def update_params
-    params.require(:article).permit(:body, :description, :headline, :image, :status)
+    params.require(:article).permit(:body, :description, :headline, :image, :status, :alt_id)
   end
 end

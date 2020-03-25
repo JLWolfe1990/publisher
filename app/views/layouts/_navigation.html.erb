@@ -1,12 +1,12 @@
 <%# navigation styled for Bootstrap 4.0 %>
 <div class="container">
   <div class="row logo-row">
-    <div class="col-sm-12 col-md-6 logo-container">
+    <div class="col-sm-12 col-md-8 logo-container">
       <%= link_to root_path do %>
         <%= render partial: 'layouts/' + ENV['APP_NAME'].underscore.downcase %>
       <% end %>
     </div>
-    <div class="col-sm-12 col-md-6 search-container">
+    <div class="col-sm-12 col-md-4 search-container">
       <div class="search-box">
         <%= simple_form_for Search.new, class: 'form-inline my-2 my-lg-0', html: {style: 'height: 38px'} do |f| %>
           <%= f.input :query, label: false, placeholder: 'Search', class: 'form-control mr-sm-2' %>

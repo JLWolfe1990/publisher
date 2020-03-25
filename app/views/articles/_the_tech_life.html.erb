@@ -1,5 +1,25 @@
 <div class="row">
-  <div class="col-sm-12">
-    Placeholder for The Tech Life
+  <div class="col">
+    <h3> Welcome to <strong>The Tech Life!!</strong> </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <p>
+      We provide information and resources for people who are interested in all things Tech!
+    </p>
+    <p>
+      Get tips for work and for play from our trusted resources. Curious about something but you
+      don't know how to get started?
+      <% unless current_user %>
+        <%= link_to 'Sign in', new_user_session_path %> and request info!
+      <% else %>
+        <%= link_to 'Fill out this form', new_topic_request_path %> to request some more info!
+      <% end %>
+    </p>
+    <p>
+      Check out this <%= link_to 'getting started', article_path('getting_started_v1') %> article
+      to jump into the conversation! Better yet, <%= link_to 'MAKE YOUR OWN!', new_topic_request_path %>
+    </p>
   </div>
 </div>
