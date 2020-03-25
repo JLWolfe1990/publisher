@@ -21,20 +21,6 @@
   background-color: #DDDDDD;
 }
 
-.article-image {
-  float: left;
-  margin-right: 25px;
-  margin-bottom: 25px;
-}
-
-.article-headline {
-  padding-top: 125px;
-}
-
-.article-body {
-//  float: left;
-}
-
 .clickable:hover {
   background-color: #DDDDDD;
 }
@@ -49,4 +35,26 @@
 
 .social-text {
   padding-top: 10px;
+}
+
+#article-show-page {
+  .article-body {
+    font-size: 20px;
+
+    .row {
+      margin-bottom: 75px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+  }
+
+  .article-image img {
+    float: right;
+  }
+
+  .article-headline {
+    padding-top: 125px;
+  }
 }
