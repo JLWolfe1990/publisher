@@ -24,6 +24,6 @@ class Article < ActiveRecord::Base
   validates :alt_id, uniqueness: true
 
   def share_text
-    "Check out this awesome post on ocate.Life called \"#{headline}\""
+    "Check out this awesome post on #{ENV['APP_DISPLAY_NAME']} called \"#{headline}\""
   end
 end

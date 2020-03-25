@@ -4,8 +4,8 @@
   </div>
   <div class="col-sm-4">
     <div class="share-link-container float-right">
-      <a href="http://twitter.com/home?status=<%= object.share_text %>" title="Share on Twitter" target="_blank" class="btn btn-twitter share-link btn-info"><i class="fa fa-twitter"></i></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=<%= object.share_text %>" title="Share on Facebook" target="_blank" class="btn btn-facebook share-link btn-primary"><i class="fa fa-facebook"></i></a>
+      <a href="http://twitter.com/intent/tweet?text=<%= object.share_text %>" title="Share on Twitter" target="_blank" class="btn btn-twitter share-link btn-info"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=<%= article_url(object, only_path: false) %>" title="Share on Facebook" target="_blank" class="btn btn-facebook share-link btn-primary"><i class="fa fa-facebook"></i></a>
     </div>
   </div>
 </div>

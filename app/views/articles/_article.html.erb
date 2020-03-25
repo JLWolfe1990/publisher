@@ -1,10 +1,10 @@
 <% size ||= :large %>
 <div class="card article-card">
-  <div class="row no-gutters">
+  <div class="row no-gutters article-block" id="<%= article.id %>" show-path="<%= article_path(article) %>">
     <div class="col-auto">
       <%= image_tag article.image.url(size), style: "border-radius: 3px 0px 0px 3px" %>
     </div>
-    <div class="col right-side">
+    <div class="col right-side-<%= size.to_s %>">
       <div class="no-gutters card-header" style="padding: 6px 12px;">
         <h4 class="col" style="margin: 0;"> OUTSIDE TEXT </h4>
       </div>

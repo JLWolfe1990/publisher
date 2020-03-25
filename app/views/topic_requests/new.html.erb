@@ -1,6 +1,6 @@
 <%= simple_form_for @topic_request do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
+  <%= f.input :title, label: 'Headline to get votes' %>
+  <%= f.input :description, label: 'Details of what you would like to explore for people to understand more' %>
   <%= f.association :requester, value: current_user.try(:id), as: :hidden %>
   <%= f.submit 'Request', class: 'btn btn-success' %>
 <% end %>

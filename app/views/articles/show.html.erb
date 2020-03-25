@@ -11,20 +11,19 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="article-image">
-      <%= image_tag @article.image.url(:medium) %>
+      <%= image_tag @article.image.url(:large) %>
     </div>
 
-    <div class="article-headline">
+    <div class="article-headline text-center">
       <h1>
-        <%= @article.headline %>
+        <%= h @article.headline.html_safe %>
       </h1>
     </div>
-    <br/>
-    <br/>
-
-    <div class="article-body">
-      <%= h @article.body.html_safe %>
-    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="article-body">
+    <%= h @article.body.html_safe %>
   </div>
 </div>
 <br/>

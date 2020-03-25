@@ -1,8 +1,13 @@
 .article-card {
   margin-bottom: 6px;
 
-  .right-side {
+  .right-side-medium {
     max-height: 200px;
+    overflow: hidden;
+  }
+
+  .right-side-large {
+    max-height: 300px;
     overflow: hidden;
   }
 }
@@ -20,6 +25,10 @@
   float: left;
   margin-right: 25px;
   margin-bottom: 25px;
+}
+
+.article-headline {
+  padding-top: 125px;
 }
 
 .article-body {
