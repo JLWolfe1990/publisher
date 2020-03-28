@@ -1,17 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: :show
+  before_action :populate_articles, only: [:welcome, :index]
   load_and_authorize_resource except: :show
 
   respond_to :html
 
   def welcome
     @topic_requests = TopicRequest.order(popularity: :desc, updated_at: :desc).limit(10)
-    @articles = @articles.order(created_at: :desc).limit(3)
   end
 
   def index
-    @status = params[:status] || 'active'
-    @articles = @articles.order(created_at: :desc).where(status: @status).page(params[:page])
   end
 
   def new
@@ -44,6 +42,12 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def populate_articles
+    @articles = Article.all
+    @status = params[:status] || 'active'
+    @articles = @articles.order(created_at: :desc).where(status: @status).page(params[:page])
+  end
 
   def find_article
     @article = Article.find_by(id: params[:id]) || Article.find_by(alt_id: params[:id])
