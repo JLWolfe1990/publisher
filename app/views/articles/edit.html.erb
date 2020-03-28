@@ -1,5 +1,5 @@
 <%= simple_form_for @article, html: { multipart: true } do |f| %>
-  <%#= f.input :image, as: :file, label: false %>
+  <%= f.input :image, as: :file, label: false %>
   <%= f.input :status, as: :select,
               collection: [['Draft', nil], ['Archived', 'archived'], ['Active', 'active']],
               include_blank: false %>
